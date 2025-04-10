@@ -1,0 +1,4 @@
+export(generer_solution_valide)
+export(generer_puzzle_valide)
+export(verifier_solution_complete)
+export(verifier_grille_partielle)
