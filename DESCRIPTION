@@ -3,7 +3,7 @@ Type: Package
 Title: Permet de jouer au Takuzu
 Version: 0.1.0
 Author: Abdoul-el SAWADOGO & Ousmane Mama Diallo
-Maintainer: remotes::install_github("Kader43/Takuzu")
+Maintainer: Maintainer: "Abdoul-el SAWADOGO <abdoul-el.sawadogo@etu.umontpellier.fr>"
 Description: Génération et validation de grilles Takuzu avec une interface Shiny.
 Imports: 
      shiny,
