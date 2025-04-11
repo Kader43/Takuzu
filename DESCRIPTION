@@ -1,15 +1,11 @@
 Package: takuzuR
 Type: Package
-Title: Permet de jouer au Takuzu
+Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Abdoul-el SAWADOGO & Ousmane Mama Diallo
-Maintainer: "Abdoul-el SAWADOGO <abdoul-el.sawadogo@etu.umontpellier.fr>"
-Description: Génération et validation de grilles Takuzu avec une interface Shiny.
-Imports: 
-     shiny,
-     shinythemes,
-     shinyjs,
-     shinyFeedback
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
