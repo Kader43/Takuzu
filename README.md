@@ -1,56 +1,50 @@
-# Jeu Takuzu (Binairo) - Bibliothèque R et Application Shiny
+# 🎯 Jeu Takuzu (Binairo) - Package R avec Application Shiny
 
-## Introduction
+## 🧠 Introduction
 
-Votre projet consiste à créer une bibliothèque en R et une application Shiny interactive pour le jeu Takuzu. Voici un guide structuré pour organiser votre travail et gérer vos commits
+Ce projet propose à la fois :
 
-## Objectifs
+- Une **bibliothèque R** permettant de générer et valider des grilles de Takuzu.
+- Une **application Shiny interactive** pour jouer directement au jeu.
 
-*   Développer une bibliothèque R robuste pour la génération et la validation de grilles de Takuzu.
-*   Créer une application Shiny conviviale permettant aux utilisateurs de jouer au Takuzu.
-*   Soumettre le projet sous la forme d'un dépôt GitHub clair et bien documenté.
+Tout est regroupé dans un **package R prêt à l'emploi**, disponible sur GitHub.
 
-## Description du Takuzu (Binairo)
+---
 
-Le Takuzu, également appelé Binairo, est un jeu de logique qui se joue sur une grille carrée (généralement 6x6 ou 8x8). Le but est de remplir la grille avec des 0 et des 1 en respectant les règles suivantes :
+## 🎯 Objectifs
 
-*   Chaque case doit contenir un 0 ou un 1.
-*   Chaque ligne et chaque colonne doivent contenir le même nombre de 0 et de 1.
-*   Il ne peut pas y avoir plus de deux 0 ou deux 1 consécutifs dans une ligne ou une colonne.
-*   Deux lignes ou deux colonnes identiques sont interdites.
+- Développer une bibliothèque R robuste pour le Takuzu (génération + validation).
+- Créer une interface Shiny simple et intuitive pour jouer.
+- Proposer un dépôt GitHub clair, bien structuré et documenté.
 
-## Installation
+---
 
-Pour installer et exécuter ce projet, suivez ces étapes :
+## 🔍 Qu'est-ce que le Takuzu (Binairo) ?
 
-1.  Assurez-vous d'avoir R et RStudio installés sur votre système.
-2.  Clonez ce dépôt GitHub sur votre machine locale.
-3.  Ouvrez le projet dans RStudio.
-4.  Installez les packages R nécessaires :
+Le **Takuzu**, ou **Binairo**, est un jeu de logique qui se joue sur une grille carrée (généralement 6x6 ou 8x8).  
+Le but est de remplir la grille avec des `0` et des `1` en respectant les règles suivantes :
 
-install.packages(c("shiny", "shinythemes", "shinyjs", "shinyFeedback", "takuzuR"))
+1. Chaque case contient un `0` ou un `1`.
+2. Chaque ligne et chaque colonne doit contenir **autant de `0` que de `1`**.
+3. Pas plus de **deux `0` ou deux `1` consécutifs** dans une ligne ou colonne.
+4. Deux lignes ou deux colonnes **identiques sont interdites**.
 
-   (Note : remplacez `"takuzuR"` par le nom de votre package si différent)
+---
 
-5.  Pour lancer l'application Shiny, exécutez la commande suivante dans la console R :
+## 🚀 Installation & Lancement
 
-runApp("inst/shiny-app")
+### 1.Installer le package depuis GitHub
 
-## Utilisation
+Dans R ou RStudio, copiez-collez ceci :
 
-Une fois l'application Shiny lancée, vous pouvez :
+```r
+if (!requireNamespace("remotes")) install.packages("remotes")
+remotes::install_github("Kader43/Takuzu")
+```
 
-*   Sélectionner la taille de la grille (6x6 ou 8x8).
-*   Cliquer sur le bouton "Nouvelle Grille" pour générer une nouvelle grille de Takuzu.
-*   Remplir les cases de la grille avec des 0 et des 1.
-*   Cliquer sur le bouton "Vérifier" pour vérifier si votre solution est correcte.
+### 2.Lancer l'applicaton Shiny
 
-## Structure du projet
+```{r}
+takuzuR::run_app()
 
-Le projet est organisé de la manière suivante :
-
-*   `R/` : Contient le code source de la bibliothèque R (fonctions pour générer et valider les grilles).
-*   `inst/shiny-app/` : Contient les fichiers `ui.R` et `server.R` pour l'application Shiny.
-*   `app.R`: contient le code pour lancer l'application shiny
-*   `README.md` : Ce fichier, qui fournit des informations sur le projet.
-
+```
