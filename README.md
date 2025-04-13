@@ -44,7 +44,8 @@ remotes::install_github("Kader43/Takuzu")
 ### 2.Lancer l'applicaton Shiny
 Une fois le package installé, utilisez :
 ```{r}
-TakuzuR::run_app()
+library(takuzuR)
+takuzuR::run_app()
 ```
 
 ### 3. Lancer l'application en mode développement
