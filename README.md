@@ -39,6 +39,7 @@ Si ce n’est pas déjà fait, installez "remotes" puis installez le package :
 ```r
 if (!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("Kader43/Takuzu")
+install.packages(c("shiny", "shinyjs", "shinythemes", "shinyFeedback", "dplyr"))
 ```
 
 ### 2.Lancer l'applicaton Shiny
