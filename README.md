@@ -35,16 +35,29 @@ Le but est de remplir la grille avec des `0` et des `1` en respectant les règle
 
 ### 1.Installer le package depuis GitHub
 
-Dans R ou RStudio, copiez-collez ceci :
-
+Si ce n’est pas déjà fait, installez "remotes" puis installez le package :
 ```r
 if (!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("Kader43/Takuzu")
 ```
 
 ### 2.Lancer l'applicaton Shiny
-
+Une fois le package installé, utilisez :
 ```{r}
-shiny::runApp()
-
+TakuzuR::run_app()
 ```
+
+### 3. Lancer l'application en mode développement
+Si vous travaillez depuis le code source (par exemple après un git clone).
+Placez-vous dans le dossier racine du package (là où se trouve DESCRIPTION).
+1.Chargez le package en mode développement :
+```{r}
+devtools::load_all()
+```
+
+2.Lancez l'application Shiny :
+```{r}
+shiny::runApp("inst/shiny-app")
+```
+
+
