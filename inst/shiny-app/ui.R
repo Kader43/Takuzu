@@ -14,7 +14,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       width = 3,
-      selectInput("taille", "Taille de grille:", choices = c(4,6,8), selected = 6),
+      selectInput("taille", "Taille de grille:", choices = c(4,6,8,10,12,14), selected = 6),
       selectInput("difficulte", "Difficulté:",
                   choices = c("Facile" = "facile", "Moyen" = "moyen", "Difficile" = "difficile"),
                   selected = "moyen"),
