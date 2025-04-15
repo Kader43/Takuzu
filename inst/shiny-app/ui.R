@@ -2,7 +2,7 @@ library(shiny)
 library(shinyjs)
 library(shinythemes)
 library(shinyFeedback)
-
+library(dplyr)
 
 ui <- fluidPage(
   theme = shinytheme("flatly"),
