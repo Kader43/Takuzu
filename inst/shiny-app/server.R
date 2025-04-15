@@ -2,7 +2,6 @@ library(shiny)
 library(shinyjs)
 library(shinythemes)
 library(shinyFeedback)
-library(dplyr)
 
 
 server <- function(input, output, session) {
