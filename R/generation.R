@@ -3,7 +3,7 @@
 #' @return Une matrice complète
 #' @export
 generer_solution_valide <- function(taille) {
-  max_attempts <- 100
+  max_attempts <- 100000
   attempt <- 0
 
   while(attempt < max_attempts) {
