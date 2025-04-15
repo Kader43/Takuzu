@@ -15,4 +15,5 @@ Imports:
     shiny,
     shinyjs,
     shinythemes,
-    shinyFeedback
+    shinyFeedback,
+    dplyr
