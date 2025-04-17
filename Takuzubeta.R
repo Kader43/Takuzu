@@ -47,7 +47,16 @@ generer_grille_complete_logique <- function() {
 }
 
 
+# Génération d'une grille partiellement remplie selon le niveau
 
+grille_initiale <- function(niveau) {
+  sol <- generer_grille_complete_logique()
+  nb_cases <- taille_matrice^2
+  nb_vides <- floor(nb_cases * switch(niveau, "Facile"=0.3, "Moyen"=0.5, "Difficile"=0.65, 0.5))
+  grille <- sol
+  grille[sample(1:nb_cases, nb_vides)] <- ""
+  return(list(grille = grille, solution = sol))
+}
 
 
 
