@@ -184,3 +184,11 @@ server <- function(input, output, session) {
   })
 }
 
+
+# Fonction pour démarrer l'application
+run_app <- function() {
+  shinyApp(ui = ui, server = server)
+}
+
+# Démarrer l'application
+run_app()
