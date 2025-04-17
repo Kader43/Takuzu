@@ -58,7 +58,28 @@ grille_initiale <- function(niveau) {
   return(list(grille = grille, solution = sol))
 }
 
+# Interface utilisateur
 
+ui <- fluidPage(
+  tags$style(HTML(".sidebar { max-height: 100vh; overflow-y: auto; }")),
+  useShinyjs(),
+  titlePanel(" Jeu de Takuzu (6x6) — Logique Naturelle"),
+  sidebarLayout(
+    sidebarPanel(id = "sidebar-buttons",
+                 selectInput("niveau", "Niveau de difficulté :", c("Facile", "Moyen", "Difficile"), "Moyen"),
+                 actionButton("reset", "Réinitialiser"),
+                 actionButton("check", "Vérifier la solution"),
+                 actionButton("reveler", " Afficher la solution"),
+                 hr(), br(), br(),
+                 h4("⏱️ Temps écoulé :"),
+                 textOutput("timer")
+    ),
+    mainPanel(
+      uiOutput("matrice"),
+      verbatimTextOutput("message")
+    )
+  )
+)
 
 
 
