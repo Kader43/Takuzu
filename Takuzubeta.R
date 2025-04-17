@@ -38,6 +38,17 @@ generer_grille_complete_logique <- function() {
     }
   }
 
+# Vérifier que toutes les colonnes sont uniques
+  colonnes <- apply(grille, 2, paste, collapse = "")
+  if (any(duplicated(colonnes))) {
+    return(generer_grille_complete_logique())
+  }
+  return(apply(grille, c(1,2), as.character))
+}
+
+
+
+
 
 
 
