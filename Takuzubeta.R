@@ -81,5 +81,106 @@ ui <- fluidPage(
   )
 )
 
+# Logique serveur
 
+server <- function(input, output, session) {
+  solution_complete <- reactiveVal()
+  matrice <- reactiveVal()
+  chronometre <- reactiveVal(Sys.time())
+  
+  tips <- "Règles : 
+  \n- chaque case de la grille doit être remplie avec un 0 ou un 1.\n- chaque ligne et chaque colonne doivent contenir autant de 0 que de 1.\n- il est interdit d’avoir trois 0 ou trois 1 consécutifs dans une ligne ou une colonne.\n-deux lignes ou deux colonnes identiques sont interdites dans la même grille."
+  output$message <- renderText(tips)
+  
+# Initialisation
+  observeEvent(TRUE, {
+    niveaux <- grille_initiale("Moyen")
+    matrice(niveaux$grille)
+    solution_complete(niveaux$solution)
+  }, once = TRUE)
+  
+# Réinitialisation
+  observeEvent(input$reset, {
+    niveaux <- grille_initiale(input$niveau)
+    matrice(niveaux$grille)
+    solution_complete(niveaux$solution)
+    chronometre(Sys.time())
+    output$message <- renderText(tips)
+  })
+  
+# Afficher la solution
+  observeEvent(input$reveler, {
+    matrice(solution_complete())
+  })
+  
+# Chronomètre
+  output$timer <- renderText({
+    invalidateLater(1000, session)
+    paste0(as.integer(difftime(Sys.time(), chronometre(), units = "secs")), " sec")
+  })
+  
+# Interface interactive
+  output$matrice <- renderUI({
+    grille <- matrice()
+    lapply(1:taille_matrice, function(i) {
+      fluidRow(
+        lapply(1:taille_matrice, function(j) {
+          actionButton(
+            inputId = paste0("cell_", i, "_", j),
+            label = grille[i, j],
+            style = "width: 50px; height: 50px; font-size: 18px;",
+            onclick = paste0("Shiny.setInputValue('cell_click', {i:", i, ", j:", j, "}, {priority: 'event'})")
+          )
+        })
+      )
+    })
+  })
+  
+# Gestion des clics
+  observeEvent(input$cell_click, {
+    i <- input$cell_click$i
+    j <- input$cell_click$j
+    grille <- matrice()
+    grille[i, j] <- ifelse(grille[i, j] == "", "0", ifelse(grille[i, j] == "0", "1", ""))
+    matrice(grille)
+  })
+  
+# Vérification
+  observeEvent(input$check, {
+    grille <- matrice()
+    valid <- TRUE
+    message <- ""
+    
+    for (i in 1:taille_matrice) {
+      if (sum(grille[i, ] == "0") != 3 || sum(grille[i, ] == "1") != 3 ||
+          sum(grille[, i] == "0") != 3 || sum(grille[, i] == "1") != 3) {
+        valid <- FALSE; message <- "Déséquilibre ligne ou colonne."; break
+      }
+    }
+    
+    if (valid) {
+      for (i in 1:taille_matrice) {
+        for (j in 1:(taille_matrice - 2)) {
+          if (grille[i, j] == grille[i, j+1] && grille[i, j+1] == grille[i, j+2] && grille[i, j] != "") {
+            valid <- FALSE; message <- "3 identiques dans une ligne."; break
+          }
+          if (grille[j, i] == grille[j+1, i] && grille[j+1, i] == grille[j+2, i] && grille[j, i] != "") {
+            valid <- FALSE; message <- "3 identiques dans une colonne."; break
+          }
+        }
+      }
+    }
+    
+    if (valid) {
+      lignes <- apply(grille, 1, paste, collapse="")
+      colonnes <- apply(grille, 2, paste, collapse="")
+      if (any(duplicated(lignes)) || any(duplicated(colonnes))) {
+        valid <- FALSE; message <- "Lignes ou colonnes dupliquées."
+      }
+    }
+    
+    if (valid) message <- "✅ Bravo ! Grille correcte."
+    output$message <- renderText(message)
+  })
+}
 
